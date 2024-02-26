@@ -21,38 +21,34 @@
                 <a href="/ajouter" class="btn btn-primary mt-5">Ajouter un etudiant</a>
                 <table class="table mt-5">
                     <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Prénoms</th>
-                        <th scope="col">Classe</th>
-                        <th scope="col">Action</th>
-                      </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénoms</th>
+                            <th scope="col">Classe</th>
+                            <th scope="col">Action</th>
+                        </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Etounde</td>
-                        <td>Philémon</td>
-                        <td>Master2</td>
-                        <td>
-                            <a href="http://" class="btn btn-info">Modifier</a>
-                            <a href="http://" class="btn btn-danger">Supprimer</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Etounde</td>
-                        <td>Philémon</td>
-                        <td>Master2</td>
-                        <td>
-                            <a href="http://" class="btn btn-info">Modifier</a>
-                            <a href="http://" class="btn btn-danger">Supprimer</a>
-                        </td>
-                      </tr>
 
+                        @forelse ($etudiants as $etudiant)
+                            <tr>
+                                <th scope="row">{{ $etudiant->id }}</th>
+                                <td>{{ $etudiant->nom }}</td>
+                                <td>{{ $etudiant->prenom }}</td>
+                                <td>{{ $etudiant->classe }}</td>
+                                <td>
+                                    <a href="http://" class="btn btn-info">Modifier</a>
+                                    <a href="http://" class="btn btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        @empty
+                            <div class="alert alert-danger mt-5" role="alert">
+                                Aucun étudiant trouvé, veuillez en ajouter
+                            </div>
+                        @endforelse
                     </tbody>
-                  </table>
+                </table>
             </div>
         </div>
     </div>
