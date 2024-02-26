@@ -20,22 +20,36 @@
                 <h1 class="text-center">AJOUTER UN ETUDIANT</h1>
                 <a href="/etudiant" class="btn btn-danger mb-3">Retour</a>
 
-                <form>
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        {{ $error }}
+                    </div>
+                @endforeach
+
+                <form action="ajouter/traitement" method="POST" class="form-group">
+                    @method('post')
+                    @csrf
                     <div class="mb-3">
-                      <label for="Nom" class="form-label">Nom</label>
-                      <input type="text" class="form-control" id="Nom" name="nom">
+                        <label for="Nom" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="Nom" name="nom">
                     </div>
                     <div class="mb-3">
-                      <label for="Prenom" class="form-label">Prenom</label>
-                      <input type="text" class="form-control" id="Prenom" name="prenom">
+                        <label for="Prenom" class="form-label">Prenom</label>
+                        <input type="text" class="form-control" id="Prenom" name="prenom">
                     </div>
                     <div class="mb-3">
-                      <label for="Classe" class="form-label">Classe</label>
-                      <input type="text" class="form-control" id="Classe" name="classe">
+                        <label for="Classe" class="form-label">Classe</label>
+                        <input type="text" class="form-control" id="Classe" name="classe">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Ajouter</button>
-                  </form>
+                </form>
             </div>
         </div>
     </div>
