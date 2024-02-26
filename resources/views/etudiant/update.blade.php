@@ -14,46 +14,45 @@
 </head>
 
 <body>
-    <div class="container text-center">
+    <div class="container">
         <div class="row mt-5">
             <div class="col s12">
-                <h1>CRUD IN LARAVEL 10</h1>
-                <a href="/ajouter" class="btn btn-primary mt-5">Ajouter un etudiant</a>
+                <h1 class="text-center">MODIFIER UN ETUDIANT </h1>
+                <a href="/etudiant" class="btn btn-danger mb-3">Retour</a>
+
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
                     </div>
                 @endif
-                <table class="table mt-5">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Prénoms</th>
-                            <th scope="col">Classe</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
 
-                        @forelse ($etudiants as $etudiant)
-                            <tr>
-                                <th scope="row">{{ $etudiant->id }}</th>
-                                <td>{{ $etudiant->nom }}</td>
-                                <td>{{ $etudiant->prenom }}</td>
-                                <td>{{ $etudiant->classe }}</td>
-                                <td>
-                                    <a href="/update-etudiant/{{ $etudiant->id }}" class="btn btn-info">Modifier</a>
-                                    <a href="http://" class="btn btn-danger">Supprimer</a>
-                                </td>
-                            </tr>
-                        @empty
-                            <div class="alert alert-danger mt-5" role="alert">
-                                Aucun étudiant trouvé, veuillez en ajouter
-                            </div>
-                        @endforelse
-                    </tbody>
-                </table>
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        {{ $error }}
+                    </div>
+                @endforeach
+
+                <form action="/update/traitement" method="POST" class="form-group">
+                    @csrf
+
+                    <input type="text"  id="id" name="id" value="{{ $etudiants->id }}" style="display: none">
+
+
+                    <div class="mb-3">
+                        <label for="Nom" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="Nom" name="nom" value="{{ $etudiants->nom }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Prenom" class="form-label">Prenom</label>
+                        <input type="text" class="form-control" id="Prenom" name="prenom" value="{{ $etudiants->prenom }}" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="Classe" class="form-label">Classe</label>
+                        <input type="text" class="form-control" id="Classe" name="classe" value="{{ $etudiants->classe }}" >
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                </form>
             </div>
         </div>
     </div>
