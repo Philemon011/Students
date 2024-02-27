@@ -20,7 +20,7 @@
                 <h1>CRUD IN LARAVEL 10</h1>
                 <a href="/ajouter" class="btn btn-primary mt-5">Ajouter un etudiant</a>
                 @if (session('status'))
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success mt-5" role="alert">
                         {{ session('status') }}
                     </div>
                 @endif
@@ -44,7 +44,7 @@
                                 <td>{{ $etudiant->classe }}</td>
                                 <td>
                                     <a href="/update-etudiant/{{ $etudiant->id }}" class="btn btn-info">Modifier</a>
-                                    <a href="http://" class="btn btn-danger">Supprimer</a>
+                                    <a href="/delete-etudiant/{{ $etudiant->id }}" class="btn btn-danger">Supprimer</a>
                                 </td>
                             </tr>
                         @empty

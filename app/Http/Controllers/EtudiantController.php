@@ -58,4 +58,15 @@ class EtudiantController extends Controller
         return redirect('/etudiant')->with('status', 'L\'étudiant a été bien modifié');
 
     }
+
+    public function delete_etudiant($id)
+    {
+
+        $etudiant = Etudiant::find($id);
+        $etudiant->delete();
+        return redirect('/etudiant')->with('status', 'L\'étudiant a été bien supprimé');
+
+    }
+
+
 }
